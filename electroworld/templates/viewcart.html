@@ -71,15 +71,15 @@ a:hover {
                     <td>{{ item.name }}</td>
                     <td>${{ item.price }}</td>
                     <td>
-                        <form method="POST" action="{% url 'shop:edit_cart' product_id %}">
+                        <form method="POST" action="../editcart">
                             {% csrf_token %}
-                            <input type="number" name="quantity" value="{{ item.quantity }}" min="1" required>
+                            <input type="number" name="quantity" min="1" required>
                             <button type="submit">Update</button>
                         </form>
                     </td>
-                    <td>${{ item.price * item.quantity }}</td>
+                  
                     <td>
-                        <a href="{% url 'shop:remove_from_cart' product_id %}">Remove</a>
+                        <a href="../removecart">Remove</a>
                     </td>
                 </tr>
             {% endfor %}

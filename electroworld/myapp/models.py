@@ -15,9 +15,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    """
-    This model defines the product details for the e-commerce store.
-    """
+  
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
     name = models.CharField(max_length=200)
     description = models.TextField()
@@ -34,16 +32,12 @@ class Product(models.Model):
         return self.stock_quantity > 0
 
     def get_price(self):
-        """
-        Get the price of the product with proper formatting.
-        """
+       
         return f"${self.price:.2f}"
 
 
 class Cart(models.Model):
-    """
-    This model will represent a cart for logged-in users (optional feature).
-    """
+  
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -60,9 +54,7 @@ class Cart(models.Model):
 
 
 class CartItem(models.Model):
-    """
-    This model stores the individual items inside a user's cart.
-    """
+  
     cart = models.ForeignKey(Cart, related_name='items', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
